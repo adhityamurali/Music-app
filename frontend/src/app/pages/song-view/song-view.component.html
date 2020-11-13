@@ -1,0 +1,101 @@
+<div style="height: 85%;" class="centered-content">
+  <div class="song-manager-container">
+
+    <div class="sidebar has-background-white">
+      <h1 class="title has-text-primary">
+        Playists
+      </h1>
+
+      <div class="list-menu">
+        <a class="list-menu-item is-active'" *ngFor="let list of lists;let i = index" (click)="getSongsOnList(i)">
+          <p>{{ list.title }}</p>
+        </a>
+
+      </div>
+
+      <button class="button is-primary has-text-white" routerLink="/new-list">+ Create New Playlist</button>
+
+    </div>
+
+    <div class="song-list-container has-background-light">
+      <div *ngIf="!allSongsFlag">
+        <div class="top-bar">
+          <h1 class="title has-text-primary">
+            Songs
+          </h1>
+          <!-- <div class="dropdown is-hoverable is-right">
+            <div class="dropdown-trigger">
+              <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                <span class="icon is-small">
+                  <i class="fas fa-cog" aria-hidden="true"></i>
+                </span>
+              </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+              <div class="dropdown-content">
+                <a [routerLink]="['/edit-list', selectedListId]" class="dropdown-item">
+                  Edit
+                </a>
+                <a (click)="onDeleteListClick()" class="dropdown-item has-text-danger">
+                  Delete
+                </a>
+              </div>
+            </div>
+          </div> -->
+        </div>
+
+        <!-- Task Elements -->
+        <div class="song" *ngFor="let song of songs;let i =index" (click)="onTaskClick(song)" [ngClass]="{ 'completed': song.completed }">
+          <div class="song-text">
+            <div class="columns">
+              <div  class="column ">
+                <p>{{ song.title }}</p>
+              </div>
+              <div  class="column ">
+                <p><b style="color: #27d7a1;">Singers:</b>{{ song.singers }}</p>
+              </div>
+              <div   class="column ">
+                <p><b style="color: #27d7a1;">Album:</b>{{ song.album }}</p>
+              </div>
+              <div style="width: 150px;" class="column ">
+                <p><b>{{ song.playTime }}</b> mins</p>
+              </div>
+            </div>
+          </div>
+          <div class="song-buttons">
+
+            
+
+            <button class="button is-danger" (click)="onDeleteSongClick(i)" style="margin-left: 10px;">
+              <div class="icon">
+                <i class="fas fa-trash"></i>
+              </div>
+            </button>
+
+          </div>
+        </div>
+
+        <h3 *ngIf="songs.length == 0" class="empty-state-text" >There are no songs here! Click the add button to add songs to this playlist.</h3>
+
+        
+      </div>
+
+      <div *ngIf="allSongsFlag" style="margin-top: -5%;margin-left: -10%;height: 100%;overflow: auto;">
+        <app-home  (newItemEvent)="addItem($event)"></app-home>
+      </div>
+
+      <button  *ngIf="!allSongsFlag" (click)="showAllSongs()" class="circle-add-button button is-primary">
+        <img src="../../../assets/plus-icon.svg" class="has-text-white">
+      </button>
+      <button  *ngIf="allSongsFlag"  (click)="updateList()" class="circle-add-button button is-primary">
+        <i class="fas fa-save" ></i>
+      </button>
+
+      <div *ngIf="!songs">
+        <h3 class="empty-state-text">Please select a Playlist from the sidebar</h3>
+      </div>
+
+    </div>
+
+  </div>
+</div>

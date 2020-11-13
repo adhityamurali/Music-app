@@ -1,0 +1,65 @@
+<div style="height: 85%;" class="centered-content">
+    <div class="song-manager-container">
+
+  
+      <div class="song-list-container has-background-light">
+        <div >
+          <div class="top-bar">
+            <h1 class="title has-text-primary">
+              All Songs
+            </h1>
+          </div>
+
+          <div class="field">
+            
+
+              
+            <div class="control has-icons-right">
+                
+                <!-- <input class="input is-primary is-rounded is-medium" (ngModelChange)="filterSongs(searchText)" [(ngModel)]="searchText"   type="text" placeholder="Search"> -->
+                <input (change)="changeFn($event)" class="input is-primary is-rounded is-medium"    type="text" placeholder="Search">
+                <span class="icon is-medium is-right">
+                    <i class="fas fa-search"></i>
+                  </span>
+            </div>
+        
+          </div>
+  
+          <!-- Task Elements -->
+        <div style="height: 75%;overflow:auto;">
+          <div class="song" *ngFor="let song of songs;let i = index">
+            <div class="song-text">
+              
+              <div style="width: 100%;"  class="columns is-mobile is-desktop" >
+                <div  class="column ">
+                  {{ song.title }}
+                </div>
+                <div  class="column ">
+                  <b style="color: #27d7a1;">Singers:</b>{{ song.singers }}
+                </div>
+                <div   class="column ">
+                  <b style="color: #27d7a1;">Album:</b>{{ song.album }}
+                </div>
+                <div  class="column ">
+                  <b>{{ song.playTime }}</b> mins
+                </div>
+              </div>
+            </div>
+            <div class="song-buttons">
+
+                <button class="button" (click)="addNewItem(i)">
+                  <div class="icon">
+                    <i class="fas fa-plus"></i>
+                  </div>
+                </button>
+    
+    
+              </div>
+            
+          </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
